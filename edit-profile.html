@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Profile</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f9; margin: 0; padding: 0; }
+    .container {
+      max-width: 500px; margin: 5rem auto; padding: 2rem;
+      background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; color: #fb8500; }
+    input, textarea, button {
+      width: 100%; padding: 0.75rem; margin-top: 1rem;
+      border-radius: 5px; border: 1px solid #ccc;
+    }
+    button {
+      background: #fb8500; color: white; border: none;
+      cursor: pointer;
+    }
+    button:hover { background: #f77f00; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Profile</h2>
+    <input type="text" id="fullName" placeholder="Full Name" />
+    <input type="number" id="age" placeholder="Age" />
+    <input type="text" id="experience" placeholder="Experience" />
+    <input type="text" id="expertise" placeholder="Field of Expertise" />
+    <input type="text" id="contact" placeholder="Contact" />
+    <input type="text" id="address" placeholder="Address" />
+    <textarea id="interest" placeholder="Field of Interest"></textarea>
+    <input type="file" id="profilePic" accept="image/*" />
+    <button onclick="saveProfile()">Save Changes</button>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    document.getElementById("fullName").value = user.fullName || "";
+    document.getElementById("age").value = user.age || "";
+    document.getElementById("experience").value = user.experience || "";
+    document.getElementById("expertise").value = user.expertise || "";
+    document.getElementById("contact").value = user.contact || "";
+    document.getElementById("address").value = user.address || "";
+    document.getElementById("interest").value = user.interest || "";
+
+    function saveProfile() {
+      const file = document.getElementById("profilePic").files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = function () {
+        updateUser(reader.result || user.profilePic);
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        updateUser(user.profilePic);
+      }
+    }
+
+    function updateUser(profilePic) {
+      const updatedUser = {
+        ...user,
+        fullName: document.getElementById("fullName").value,
+        age: document.getElementById("age").value,
+        experience: document.getElementById("experience").value,
+        expertise: document.getElementById("expertise").value,
+        contact: document.getElementById("contact").value,
+        address: document.getElementById("address").value,
+        interest: document.getElementById("interest").value,
+        profilePic: profilePic
+      };
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      users = users.map(u => u.username === user.username ? updatedUser : u);
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("loggedInUser", JSON.stringify(updatedUser));
+      alert("Profile updated!");
+      window.location.href = "home.html";
+    }
+  </script>
+</body>
+</html>

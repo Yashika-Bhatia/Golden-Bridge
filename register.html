@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - GoldenBridge</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f9; margin: 0; padding: 0; }
+    .container {
+      max-width: 500px; margin: 5rem auto; padding: 2rem;
+      background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; color: #fb8500; }
+    input, textarea, button {
+      width: 100%; padding: 0.75rem; margin-top: 1rem;
+      border-radius: 5px; border: 1px solid #ccc;
+    }
+    button {
+      background: #fb8500; color: white; border: none;
+      cursor: pointer;
+    }
+    button:hover { background: #f77f00; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Register</h2>
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <input type="text" id="fullName" placeholder="Full Name" required />
+    <input type="number" id="age" placeholder="Age" />
+    <input type="text" id="experience" placeholder="Experience (in years)" />
+    <input type="text" id="expertise" placeholder="Field of Expertise" />
+    <input type="text" id="contact" placeholder="Contact Number" />
+    <input type="text" id="address" placeholder="Address" />
+    <textarea id="interest" placeholder="Field of Interest"></textarea>
+    <input type="file" id="profilePic" accept="image/*" />
+    <button onclick="register()">Register</button>
+  </div>
+
+  <script>
+    function register() {
+      const reader = new FileReader();
+      const file = document.getElementById("profilePic").files[0];
+      const userData = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value,
+        fullName: document.getElementById("fullName").value,
+        age: document.getElementById("age").value,
+        experience: document.getElementById("experience").value,
+        expertise: document.getElementById("expertise").value,
+        contact: document.getElementById("contact").value,
+        address: document.getElementById("address").value,
+        interest: document.getElementById("interest").value,
+        profilePic: ""
+      };
+
+      reader.onloadend = function() {
+        if (file) {
+          userData.profilePic = reader.result;
+        }
+
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        users.push(userData);
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("loggedInUser", JSON.stringify(userData));
+        window.location.href = "home.html";
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        reader.onloadend(); // Call directly if no file is uploaded
+      }
+    }
+  </script>
+</body>
+</html>

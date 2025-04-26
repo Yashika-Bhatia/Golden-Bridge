@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GoldenBridge - Home</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f9; margin: 0; padding: 0; }
+    .header {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 1rem 2rem;
+      background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .header h2 { color: #fb8500; margin: 0; }
+    .profile-icon {
+      width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+      cursor: pointer; border: 2px solid #fb8500;
+    }
+    .dropdown {
+      position: absolute; right: 2rem; top: 70px;
+      background: white; border: 1px solid #ccc; border-radius: 5px;
+      display: none; width: 200px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .dropdown div {
+      padding: 10px; border-bottom: 1px solid #eee;
+    }
+    .dropdown div:last-child { border-bottom: none; }
+    .dropdown button {
+      width: 100%; background: none; border: none; text-align: left;
+      padding: 10px; cursor: pointer; color: #333;
+    }
+    .dropdown button:hover { background: #f4f4f9; }
+
+    .container {
+      max-width: 800px; margin: 3rem auto; padding: 2rem;
+      background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .button-container {
+      display: flex; justify-content: space-around; margin-top: 2rem;
+    }
+    .button-container button {
+      padding: 1rem; border-radius: 5px; background: #fb8500;
+      color: white; border: none; cursor: pointer; width: 30%;
+    }
+    .button-container button:hover { background: #f77f00; }
+
+    .chatbot {
+      position: fixed; right: 20px; bottom: 20px; width: 300px; height: 450px;
+      border: none; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    body {
+      background-image: url(Untitled.png);
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: contain;
+    }
+
+    body {
+  margin: 0;
+  padding: 0;
+  background-image: url(Untitled.png); /* Replace with your image path */
+  background-size: cover;         /* Scale image to cover the whole screen */
+  background-position: center;    /* Center the image */
+  background-repeat: no-repeat;   /* Do not repeat the image */
+  background-attachment: fixed;   /* Keeps image fixed while scrolling */
+  font-family: Arial, sans-serif;
+}
+body {
+      margin: 0;
+      padding: 0;
+      background-image: url(Untitled.png)
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9); /* Optional: semi-transparent background */
+      max-width: 600px;
+      margin: 5rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="header">
+    <h2>GoldenBridge</h2>
+    <img src="" alt="Profile" class="profile-icon" id="profilePic" onclick="toggleDropdown()" />
+    <div class="dropdown" id="profileDropdown">
+      <div id="profileDetails"></div>
+      <button onclick="navigateTo('edit-profile.html')">Edit Profile</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="button-container">
+      <button onclick="navigateTo('skill-bridges.html')">Explore Skill Bridges</button>
+      <button onclick="navigateTo('wisdom-circles.html')">Join Wisdom Circles</button>
+      <button onclick="navigateTo('idea-showcase.html')">Idea Showcase</button>
+    </div>
+  </div>
+  
+
+  <iframe class="chatbot"
+    src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2024/10/27/10/20241027104653-Y3JOS5DZ.json">
+  </iframe>
+  
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    const profilePic = document.getElementById("profilePic");
+    const dropdown = document.getElementById("profileDropdown");
+    const details = document.getElementById("profileDetails");
+
+    if (user) {
+      profilePic.src = user.profilePic || "https://via.placeholder.com/40";
+      details.innerHTML = `
+        <div><strong>${user.fullName}</strong></div>
+        <div>Age: ${user.age}</div>
+        <div>Expertise: ${user.expertise}</div>
+      `;
+    }
+
+    function toggleDropdown() {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    function navigateTo(path) {
+      window.location.href = path;
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+
+    
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.profile-icon')) {
+        dropdown.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

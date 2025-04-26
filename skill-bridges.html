@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skill Bridges</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fb8500;
+      padding: 1rem 2rem;
+      color: white;
+    }
+    .navbar h1 {
+      margin: 0;
+      cursor: pointer;
+    }
+    .container {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      color: #fb8500;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url(skill.png);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9); /* Optional: semi-transparent background */
+      max-width: 600px;
+      margin: 5rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+    /* Explore Column Styling */
+.explore-column {
+    width: 25%;
+    padding: 20px;
+    background-color: #1e2a36;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Heading Style */
+.explore-column h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Explore Column Link Styling */
+.explore-column a {
+    display: block;
+    padding: 12px;
+    margin: 10px 0;
+    text-decoration: none;
+    color: #fff;
+    background-color: #2c3e50;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect for Links */
+.explore-column a:hover {
+    background-color: #3498db;
+    transform: translateY(-5px);
+}
+
+/* Active State for Links */
+.explore-column a:active {
+    background-color: #2980b9;
+    transform: translateY(0);
+}
+
+/* Shadow Effect on Hover */
+.explore-column:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .explore-column {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1 onclick="scrollToTop()">GoldenBridge</h1>
+  </div>
+  <div class="container">
+    <h2>Welcome to Skill Bridges</h2>
+    <p>Discover and build new skills through hands-on bridges and micro-courses.</p>
+  </div>
+
+
+
+<div style="position: fixed; top: 100px; left: 20px; background: linear-gradient(135deg, #000428, #004e92); padding: 1rem; border-radius: 1rem; color: white; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1000; width: 200px;">
+  <h3 style="text-align: center; margin-bottom: 1rem; font-family: 'Segoe UI', sans-serif;">🚀 Explore Chats</h3>
+  <a href="finance.html" style="display: block; margin: 10px 0; background: #48cae4; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; color: black; font-weight: bold;">💰 Finance & Savings</a>
+  <a href="sharemarket.html" style="display: block; margin: 10px 0; background: #80ed99; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; color: black; font-weight: bold;">📈 Share Market</a>
+  <a href="cooking.html" style="display: block; margin: 10px 0; background: #ffb703; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; color: black; font-weight: bold;">🍳 Cooking</a>
+  <a href="general.html" style="display: block; margin: 10px 0; background: #ffd6ff; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; color: black; font-weight: bold;">💬 General</a>
+  <a href="tech.html" style="display: block; margin: 10px 0; background: #90e0ef; padding: 10px; border-radius: 8px; text-align: center; text-decoration: none; color: black; font-weight: bold;">🧠 Technology</a>
+</div>
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
